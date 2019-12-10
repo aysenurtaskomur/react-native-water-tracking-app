@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
-import FirstPage from './src/components/firstPage'
-import GetInformation from './src/components/getInformation'
-
-
+import {Provider} from 'mobx-react';
+import store from './src/store';
+import NavigationService from './src/NavigationService'
+import Router from './src/Router'
  export default class App extends Component {
   render() {
     return (
-      <GetInformation/>
-    )
+      <Provider  {...store}>
+         <Router 
+         ref={navigatorRef=>{
+         NavigationService.setTopLevelNavigator(navigatorRef);}}/>
+      </Provider>
+     
+    );
   }
 }
