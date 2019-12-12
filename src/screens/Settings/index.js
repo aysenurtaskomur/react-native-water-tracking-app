@@ -34,9 +34,10 @@ export default class Settings extends Component {
 const styles=StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor: 'white'
+    backgroundColor: '#1976D2'
   },
   textStyle:{
-    fontSize: 19
+    fontSize: 19,
+    color:'white'
   }
 });

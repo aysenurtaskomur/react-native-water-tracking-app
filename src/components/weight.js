@@ -18,8 +18,6 @@ export default class weight extends Component {
       onChangeText={(value) =>InformationStore._setWeight(value)}
       />
       
-     {/* <Text>{InformationStore.weight}</Text> */}
-      
     </Item>  
      
     )

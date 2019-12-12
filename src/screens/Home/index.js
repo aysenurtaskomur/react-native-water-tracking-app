@@ -10,10 +10,9 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const {width} = Dimensions.get("window");
-const size = width - 64;
-const BUTTONS = ["100 ml", "200 ml", "300 ml","400 ml", "500 ml","600 ml", "700 ml", "800 ml", "900ml","1000 ml", "1100 ml", "1200 ml", "1300ml", "1400 ml", "1500 ml","Delete","Cancel"];
-const DESTRUCTIVE_INDEX = 15;
-const CANCEL_INDEX = 16;
+const windowSize = width - 64;
+const ActionButtons = [50 , 100 , 200 , 300 , 400 , 500 , 600 , 700 , 800 , 900 , 1000 , 1100 , 1200 , 1300 , 1400 , 1500];
+const cancelButtonIndex = ActionButtons.length - 1;
 
 @observer
 export default class Home extends Component {
@@ -28,7 +27,7 @@ export default class Home extends Component {
         <Button 
         transparent light
         onPress={()=>NavigationService.navigate('Settings')}>
-        <Text>Settings</Text>
+        <Icon style={{fontSize:30, color:'white',paddingRight: 10}} name="person"/>
       </Button>
       )
   };
@@ -40,10 +39,10 @@ export default class Home extends Component {
           <Content contentContainerStyle={{flex: 1}}>
 
           <Grid>
-            <Row size={80} style={{justifyContent:'center',alignItems:'center'}}>
+            <Row size={80} style={styles.rowStyle}>
             <AnimatedCircularProgress
             style={styles.circleProgress}
-            size={size}
+            size={windowSize}
             width={5}
             fill={WaterStore.percente}
             tintColor="#00e0ff"
@@ -59,33 +58,30 @@ export default class Home extends Component {
           </AnimatedCircularProgress>
          
             </Row>
-            <Row size={20}>
+            <Row size={20} style={styles.rowStyle}>
             <Button
             style={styles.button}
             onPress={() =>
             ActionSheet.show(
               {
-                options: BUTTONS,
-                cancelButtonIndex: CANCEL_INDEX,
-                destructiveButtonIndex: DESTRUCTIVE_INDEX,
+                options: ActionButtons,
+                cancelButtonIndex: cancelButtonIndex,
+                destructiveButtonIndex: cancelButtonIndex,
                 title: "Select Water Amount"
               },
               buttonIndex => {
-                this.setState({ clicked: BUTTONS[buttonIndex] });
+                WaterStore._addWater(ActionButtons[buttonIndex]);
+                console.log(WaterStore.water);
               }
-            )}
+            )
+          }
           >
-            <Icon style={{flex:1,justifyContent:'center',alignItems:'center',color:'white',fontSize: 30}} name="local-drink" />
+            <Icon style={{color:'#1A237E',fontSize: 30}} name="local-drink" />
           </Button>
             </Row>
         </Grid>
           
-          
-      
         
-          
-
-              
           </Content>
         </Container>
         </Root>
@@ -96,16 +92,21 @@ export default class Home extends Component {
 
 const styles=StyleSheet.create({
   container:{
-    backgroundColor: '#2196F3'
+    backgroundColor: '#1976D2'
   },
   button:{
-    height:50,
-    width:50,
-    borderRadius:100,
     justifyContent:'center',
-    alignItems:'center'
+    alignItems: 'center',
+    height:60,
+    width:60,
+    borderRadius:100,
+    backgroundColor:'white'
   },
   circleProgress:{
+    alignItems: 'center'
+  },
+  rowStyle:{
+    justifyContent: 'center',
     alignItems: 'center'
   }
 });

@@ -8,6 +8,7 @@
     "postinstall": "npx jetify"
   },
   "dependencies": {
+    "firebase": "^7.5.2",
     "mobx": "^5.15.0",
     "mobx-react": "^5.4.3",
     "native-base": "^2.13.8",

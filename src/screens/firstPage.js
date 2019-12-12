@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { StyleSheet , Image,Dimensions} from 'react-native'
-import { Left,Right,Title, Card,Container,Header, Content, Button,Fab} from "native-base";
+import { StyleSheet , View,Dimensions} from 'react-native'
+import { Left,Right,Title, Card,Container,Header, Content, Button,Fab, Input,Text,Item} from "native-base";
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import NavigationService from '../NavigationService';
@@ -8,6 +8,7 @@ import InformationStore from '../store/informationStore';
 import {observer} from 'mobx-react';
 
 const screenHeight = Math.round(Dimensions.get('window').height);
+const screenWidth = Math.round(Dimensions.get('window').width);
 
 @observer
 export default class FirstPage extends Component { 
@@ -15,44 +16,35 @@ export default class FirstPage extends Component {
     render() {         
         return (
             <Container style={styles.container}>
-            <Content>
-                <Fab
-                active={'true'}
-                direction="up"
-                containerStyle={{ }}
-                style={{ backgroundColor: 'white' }}
-                position="bottomRight"
-                onPress = {() => NavigationService.navigate('Information')
-                }>
-                <Icon style={{color:'blue'}} name="chevron-right" />
-                </Fab>
-                <Grid>
-                    <Row style={styles.imageRow}>
-                        <Col>
-                            <Card transparent>                  
-                            <Button 
-                            transparent
-                            onPress={()=>{InformationStore._setGender(1)}}>
-                                <Image
-                                    style={styles.image}
-                                    source={require('../assets/woman.jpg')}
-                                />
-                            </Button> 
-                            </Card>
-                        </Col>
-                        <Col>
-                            <Card transparent> 
-                            <Button 
-                            transparent
-                            onPress={()=>{InformationStore._setGender(2)}}>
-                                    <Image
-                                        style={styles.image}
-                                        source={require('../assets/man.jpg')}
-                                    />
-                            </Button>                                 
-                        </Card> 
-                        </Col>         
-                      </Row>  
+            <Content contentContainerStyle={{flex:1}} >
+                <Grid > 
+                    <Col style={{ justifyContent:'center',alignItems:'center'}}>                                     
+                    <Text style={styles.textStyle}> Username </Text> 
+                    <Item style={{ width: screenWidth - 100}}>
+                        <Input 
+                        style={styles.input}
+                        placeholder="username"
+                        keyboardType="default"
+                        value={InformationStore.username}
+                        onChangeText={(value) =>InformationStore._setUsername(value)}
+                        /> 
+                        </Item> 
+                          
+                    </Col>
+                      
+                    
+                    <Fab
+                    active={'true'}
+                    direction="up"
+                    containerStyle={{ flex:1}}
+                    style={{ backgroundColor: 'white'}}
+                    position="bottomRight"
+                    onPress = {() => NavigationService.navigate('Information')
+                    }>
+                    <Icon style={{color:'blue'}} name="chevron-right" />
+                    </Fab>
+                  
+                   
                 </Grid>      
             </Content>   
                
@@ -63,18 +55,20 @@ export default class FirstPage extends Component {
  
 const styles=StyleSheet.create({
     container:{
-        flex: 1,
-        backgroundColor: '#2196F3'
+        backgroundColor: '#1976D2'
     },
-     imageRow:{
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginVertical: screenHeight/3
-     },
-    image:{
-        borderRadius: 100,
-        width:150,
-        height:150,
-        marginHorizontal: 30
+    rowStyle:{
+        alignItems: 'center'
+    },
+    textStyle:{
+        fontSize:22,
+        color:'white',
+        marginBottom:15
+    },
+    input:{
+        borderRadius: 10,
+        textAlign:'center',
+        backgroundColor:'white',
+       
     }
 });

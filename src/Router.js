@@ -19,7 +19,7 @@ const AppStack = createStackNavigator({
     title: 'Water Reminder',
     headerBackTitle: null,
     headerStyle:{
-      backgroundColor: '#2196F3'
+      backgroundColor: '#3F51B5'
     },
     headerTintColor: 'white',
     headerTitleStyle:{
