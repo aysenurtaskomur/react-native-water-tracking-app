@@ -8,6 +8,7 @@ import {observer} from 'mobx-react';
 
 @observer
 export default class timePicker extends Component {
+ 
 
   componentWillMount() {
     this._panResponder = PanResponder.create({
@@ -20,13 +21,16 @@ export default class timePicker extends Component {
     });
   }
 
+
   render() {
+  const {pickername} = this.props;
+
     return (
       
         <View style={styles.container}>
         <TimePicker
           style={{ width: 100}}
-          date={InformationStore.time}
+          date={pickername==='wakeup' ? InformationStore.wakeup : InformationStore.sleep}
           mode="time"
           format="HH:mm"
           confirmBtnText="Confirm"
@@ -49,8 +53,10 @@ export default class timePicker extends Component {
               backgroundColor: 'white',
             },
           }}
-          onDateChange={(time) => {InformationStore._setTime(time)}}
+          onDateChange={(time) => {InformationStore._setTime(pickername,time)}}
         />
+
+   
         </View>
 
     );

@@ -7,7 +7,6 @@ import NavigationService from '../NavigationService';
 import InformationStore from '../store/informationStore';
 import {observer} from 'mobx-react';
 
-const screenHeight = Math.round(Dimensions.get('window').height);
 const screenWidth = Math.round(Dimensions.get('window').width);
 
 @observer
@@ -28,11 +27,9 @@ export default class FirstPage extends Component {
                         value={InformationStore.username}
                         onChangeText={(value) =>InformationStore._setUsername(value)}
                         /> 
-                        </Item> 
-                          
+                        </Item>   
                     </Col>
-                      
-                    
+   
                     <Fab
                     active={'true'}
                     direction="up"

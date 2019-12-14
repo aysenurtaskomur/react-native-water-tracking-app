@@ -9,6 +9,10 @@ import NavigationService from '../../NavigationService';
 
 
 export default class Information extends Component {
+ 
+state={
+  fields:{}
+}
   render() {
     return (
     <Container style={styles.container}>
@@ -38,7 +42,7 @@ export default class Information extends Component {
                   <Text style={styles.textStyle}>  Wake Up </Text>
                 </Col>
                 <Col size={3}>
-                  <TimePicker  date='wakeup'/>
+                  <TimePicker pickername="wakeup"/>
                 </Col>
             </Row>
 
@@ -47,7 +51,8 @@ export default class Information extends Component {
                   <Text style={styles.textStyle}>  Sleep </Text>
                 </Col>
                 <Col size={3}>
-                  <TimePicker  date='sleep'/>
+                  <TimePicker pickername="sleep"/>
+               
                 </Col>
             </Row>
            </Grid>

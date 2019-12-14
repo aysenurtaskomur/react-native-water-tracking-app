@@ -1,8 +1,9 @@
-import {observable,action,autorun} from 'mobx';
+import {observable,action,autorun,reaction} from 'mobx';
+import {Alert} from 'react-native'
 
 class WaterStore{
     @observable goalWater= 1
-    @observable water= 1
+    @observable water= 0
     @observable percente= 1
 
    
@@ -11,6 +12,13 @@ class WaterStore{
           this.water;
           this._percentage();
        })
+        reaction(
+                  ()=>this.percente,
+               percente=>{
+            if(percente>99){
+               Alert.alert("Tebrikler!","Hedefinizi tamamladınız");
+            }
+           })
     }
    @action _waterAmount(weight){
       this.goalWater = weight * 35;
@@ -23,6 +31,9 @@ class WaterStore{
 
    @action _percentage(){
       this.percente = Math.ceil((this.water/this.goalWater)*100);
+      if(this.percente>100){
+         this.percente=100;
+      }
    }
 
   
