@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import {StyleSheet } from 'react-native'
 import { Container, Content,List, ListItem, Text,Right,Icon,Left,Button} from 'native-base'
-import PushNotification from 'react-native-push-notification';
+import NavigationService from '../../NavigationService';
 
 export default class Settings extends Component {
-
+ 
   render() {
     return (
       <Container style={styles.container}>
@@ -12,18 +12,27 @@ export default class Settings extends Component {
         <List>
             <ListItem selected>
               <Left>
-                <Text style={styles.textStyle}>Change Water Amount</Text>
+                <Text style={styles.textStyle}>Günlük Su Miktarı</Text>
               </Left>
               <Right>
-                <Icon name="arrow-forward" style={styles.icon}/>
+                <Button transparent
+                onPress={()=>NavigationService.navigate('Amount')}
+                >
+                  <Icon name="arrow-forward" style={styles.icon}/>
+                </Button>
               </Right>
             </ListItem>
+
             <ListItem selected>
               <Left>
-                <Text style={styles.textStyle}>Change Weight</Text>
+                <Text style={styles.textStyle}>Kilo Değişimi</Text>
               </Left>
               <Right>
-                <Icon name="arrow-forward" style={styles.icon}/>
+                <Button transparent
+                onPress={()=>NavigationService.navigate('ChangeWeight')}
+                >
+                <Icon name="arrow-forward" style={styles.icon}/> 
+                </Button>
               </Right>
             </ListItem>
           </List>

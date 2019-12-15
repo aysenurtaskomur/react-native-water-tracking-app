@@ -8,7 +8,6 @@ import WaterStore from '../../store/waterStore';
 import NavigationService from '../../NavigationService';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import waterStore from '../../store/waterStore';
 
 const {width} = Dimensions.get("window");
 const windowSize = width - 64;
@@ -17,13 +16,19 @@ const cancelButtonIndex = ActionButtons.length - 1;
 
 @observer
 export default class Home extends Component {
+ 
+
   constructor(props){
     super(props);
+    
      WaterStore._waterAmount(InformationStore.weight);
      WaterStore._percentage();
+    console.log(InformationStore.weight);
+    console.log(WaterStore.goalWater);
   }
   
   static navigationOptions= {
+      headerLeft: null,
       headerRight: (
         <Button 
         transparent light
@@ -34,6 +39,7 @@ export default class Home extends Component {
   };
   
     render() {
+      
       return (
         <Root>
           <Container style={styles.container}>
@@ -51,6 +57,7 @@ export default class Home extends Component {
             {
               (fill) => (
                 <Text style={{color:'white',fontSize: 60}}>
+                 
                    %{WaterStore.percente}
                 </Text>
               )

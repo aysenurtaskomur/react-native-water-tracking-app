@@ -7,18 +7,21 @@ import InformationStore from '../store/informationStore';
 //keyboarddan girince tek tek alıyor duzelt
 @observer
 export default class weight extends Component {
+  
+  constructor(props){
+    super(props);
+  }
   render() {
     return (
-    <Item style={{width:125}}>
+  
     <Input 
       style={styles.input}
-      placeholder="weight"
+      placeholder="Kilonuz"
       keyboardType="numeric"
       value={InformationStore.weight}
       onChangeText={(value) =>InformationStore._setWeight(value)}
       />
-      
-    </Item>  
+     
      
     )
   }
@@ -29,6 +32,8 @@ const styles=StyleSheet.create({
   input:{
     borderRadius: 10,
     textAlign:'center',
-    backgroundColor:'white'
+    backgroundColor:'white',
+    alignSelf: 'center',
+    width:50
   }
 })

@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
-import {Container, Content,Text,Fab} from "native-base";
+import { StyleSheet,Dimensions } from 'react-native'
+import {Container, Content,Text,Fab,Item} from "native-base";
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import TimePicker from '../../components/timePicker'
 import Weight from '../../components/weight';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import NavigationService from '../../NavigationService';
-
+import firebase from 'firebase'
+const screenWidth = Math.round(Dimensions.get('window').width);
 
 export default class Information extends Component {
- 
-state={
-  fields:{}
-}
+
+
+  static navigationOptions={
+    headerLeft: null
+  }
   render() {
     return (
     <Container style={styles.container}>
@@ -29,28 +31,32 @@ state={
         </Fab>
          <Grid>
              <Row style={styles.rowStyle}>
-              <Col>
-              <Text style={styles.textStyle}> Weight </Text>
+              <Col size={screenWidth/2}>
+              <Text style={styles.textStyle}> Kilo </Text>
               </Col>
-              <Col style={{alignItems: 'center',justifyContent: 'center'}}>
+              <Col size={screenWidth/2} style={{alignItems: 'center',justifyContent: 'center'}}>
+                <Item style={{width:125,alignItems:'center'}}>
                 <Weight />
+                </Item> 
               </Col>      
             </Row>
 
             <Row style={styles.rowStyle}>
-                <Col size={1}>
-                  <Text style={styles.textStyle}>  Wake Up </Text>
+                <Col size={screenWidth/2} >
+                  <Text style={styles.textStyle}>  Uyanma Saati </Text>
                 </Col>
-                <Col size={3}>
-                  <TimePicker pickername="wakeup"/>
+                <Col size={screenWidth/2}>
+                 
+                    <TimePicker pickername="wakeup"/>
+                  
                 </Col>
             </Row>
 
             <Row style={styles.rowStyle}>
-                <Col size={1}>
-                  <Text style={styles.textStyle}>  Sleep </Text>
+                <Col size={screenWidth/2}>
+                  <Text style={styles.textStyle}>  Uyku Saati </Text>
                 </Col>
-                <Col size={3}>
+                <Col size={screenWidth/2}>
                   <TimePicker pickername="sleep"/>
                
                 </Col>
@@ -80,7 +86,7 @@ const styles=StyleSheet.create({
   textStyle:{
     fontSize:22,
     color:'white',
-    marginLeft:50
+    marginLeft:20
   }
 })
 

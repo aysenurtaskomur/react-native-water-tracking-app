@@ -8,15 +8,6 @@ import firebase from 'firebase'
 import PushNotification from 'react-native-push-notification';
 
  export default class App extends Component {
-  constructor(props){
-    super(props);
-    PushNotification.localNotificationSchedule({
-      //... You can use all the options from localNotifications
-      message: "My Notification Message", // (required)
-      date: new Date(Date.now() + 60 * 1000) // in 60 secs
-    });
-  }
-
    componentDidMount(){
     var firebaseConfig = {
       apiKey: "AIzaSyCLvfZmdzUztDv2C7T2lqHKxoa_9YEK9Wg",

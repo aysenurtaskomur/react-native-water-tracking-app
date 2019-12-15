@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import {AppRegistry,StyleSheet,PanResponder,View} from 'react-native';
-import { Content,Item} from "native-base";
+import {AppRegistry,StyleSheet,PanResponder,View,Dimensions} from 'react-native';
+import {Container,Content,Item} from 'native-base';
 import TimePicker from 'react-native-datepicker';
 import InformationStore from '../store/informationStore';
 import {observer} from 'mobx-react';
 
 
+const screenWidth = Math.round(Dimensions.get('window').width);
 @observer
 export default class timePicker extends Component {
- 
 
   componentWillMount() {
     this._panResponder = PanResponder.create({
@@ -24,12 +24,12 @@ export default class timePicker extends Component {
 
   render() {
   const {pickername} = this.props;
-
     return (
       
+        
         <View style={styles.container}>
         <TimePicker
-          style={{ width: 100}}
+          style={{ width: screenWidth/5}}
           date={pickername==='wakeup' ? InformationStore.wakeup : InformationStore.sleep}
           mode="time"
           format="HH:mm"
@@ -55,19 +55,17 @@ export default class timePicker extends Component {
           }}
           onDateChange={(time) => {InformationStore._setTime(pickername,time)}}
         />
-
-   
-        </View>
-
+        
+       </View>
+       
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    flex:1,
+    justifyContent:'center'
   }
 });
 

@@ -1,5 +1,4 @@
-import {observable,action} from 'mobx';
-
+import {observable,action,autorun} from 'mobx';
 
 class InformationStore{
   @observable weight = ''
@@ -7,8 +6,17 @@ class InformationStore{
   @observable wakeup = '00:00'
   @observable sleep = '00:00'
 
+  // constructor(){
+  //   autorun(()=>{
+  //     this.weight;
+     
+
+  //      this.writeUserData(0,this.username,this.weight,this.wakeup,this.sleep);
+  //   })
+  // }
+
   @action _setWeight(newData){
-    this.weight=newData; 
+    this.weight=newData;   
   }
 
   @action _setUsername(username){
@@ -22,7 +30,14 @@ class InformationStore{
       this.sleep=newTime;
   }
 
-  
+  writeUserData(userId,username,weight,wakeup,sleep){
+    firebase.database().ref('users/' + userId).set({
+      username: username,
+      weight: weight,
+      wakeup: wakeup,
+      sleep: sleep
+    });
+  }
 }
 
 export default new InformationStore();

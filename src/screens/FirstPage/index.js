@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { StyleSheet , View,Dimensions} from 'react-native'
-import { Left,Right,Title, Card,Container,Header, Content, Button,Fab, Input,Text,Item} from "native-base";
+import { StyleSheet ,Dimensions} from 'react-native'
+import { Container, Content,Fab, Input,Text,Item} from "native-base";
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import NavigationService from '../NavigationService';
-import InformationStore from '../store/informationStore';
+import NavigationService from '../../NavigationService';
+import InformationStore from '../../store/informationStore';
 import {observer} from 'mobx-react';
 
 const screenWidth = Math.round(Dimensions.get('window').width);
@@ -18,7 +18,7 @@ export default class FirstPage extends Component {
             <Content contentContainerStyle={{flex:1}} >
                 <Grid > 
                     <Col style={{ justifyContent:'center',alignItems:'center'}}>                                     
-                    <Text style={styles.textStyle}> Username </Text> 
+                    <Text style={styles.textStyle}> Kullanıcı Adı </Text> 
                     <Item style={{ width: screenWidth - 100}}>
                         <Input 
                         style={styles.input}
@@ -65,7 +65,6 @@ const styles=StyleSheet.create({
     input:{
         borderRadius: 10,
         textAlign:'center',
-        backgroundColor:'white',
-       
+        backgroundColor:'white'     
     }
 });

@@ -3,9 +3,11 @@ import {createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Home from './screens/Home'
 import Information from './screens/Information'
-import FirstPage from './screens/firstPage'
+import FirstPage from './screens/FirstPage'
 import Settings from './screens/Settings'
 import SplashPage from './screens/SplashPage'
+import ChangeWeight from './screens/ChangeWeight'
+import Amount from './screens/Amount'
 import 'react-native-gesture-handler'
  
 const AppStack = createStackNavigator({
@@ -13,9 +15,11 @@ const AppStack = createStackNavigator({
     Information: Information,
     Home: Home,
     Settings: Settings,
-    SplashPage: SplashPage
+    SplashPage: SplashPage,
+    Amount:Amount,
+    ChangeWeight:ChangeWeight
 },{
-  initialRouteName: 'SplashPage',
+  initialRouteName: 'FirstPage',
   headerLayoutPreset: 'center',
   defaultNavigationOptions:{
     title: 'Water Reminder',
@@ -33,7 +37,9 @@ const AppStack = createStackNavigator({
 
 const SettingsModal= createStackNavigator({
     Main: AppStack,
-    Settings : Settings
+    Settings : Settings,
+    Amount: Amount,
+    ChangeWeight: ChangeWeight
 },{
   mode: "modal",
   headerMode: "none"
