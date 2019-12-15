@@ -29,7 +29,7 @@ export default class timePicker extends Component {
         
         <View style={styles.container}>
         <TimePicker
-          style={{ width: screenWidth/5}}
+          style={{ width: screenWidth/4}}
           date={pickername==='wakeup' ? InformationStore.wakeup : InformationStore.sleep}
           mode="time"
           format="HH:mm"

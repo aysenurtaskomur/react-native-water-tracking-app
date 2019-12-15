@@ -15,53 +15,40 @@ export default class Information extends Component {
   static navigationOptions={
     headerLeft: null
   }
+
   render() {
     return (
     <Container style={styles.container}>
-        <Content contentContainerStyle={{ flex:1,justifyContent:'center'}}>        
-          <Fab
+        <Content contentContainerStyle={{ flex:1}}>        
+         <Grid>
+            <Row style={styles.rowStyle}>
+              <Row> 
+                <Text style={styles.textStyle}>  Uyanma Saati  </Text>
+              </Row>
+              <Row>
+                <TimePicker pickername="wakeup"/>
+              </Row>
+            </Row>
+
+            <Row style={styles.rowStyle}>
+              <Row>
+                <Text style={styles.textStyle}>  Uyku Saati </Text>
+              </Row>
+              <Row>
+                <TimePicker pickername="sleep"/>
+              </Row>
+            </Row>
+           </Grid>  
+           <Fab
           active={'true'}
           direction="up"
           containerStyle={{ }}
           style={{ backgroundColor: 'white' }}
           position="bottomRight"
-          onPress = {() => NavigationService.navigate('Home')
-        }>
+          onPress = {() =>{ NavigationService.navigate('Home')}}
+        >
           <Icon style={{color:'blue'}} name="chevron-right" />
         </Fab>
-         <Grid>
-             <Row style={styles.rowStyle}>
-              <Col size={screenWidth/2}>
-              <Text style={styles.textStyle}> Kilo </Text>
-              </Col>
-              <Col size={screenWidth/2} style={{alignItems: 'center',justifyContent: 'center'}}>
-                <Item style={{width:125,alignItems:'center'}}>
-                <Weight />
-                </Item> 
-              </Col>      
-            </Row>
-
-            <Row style={styles.rowStyle}>
-                <Col size={screenWidth/2} >
-                  <Text style={styles.textStyle}>  Uyanma Saati </Text>
-                </Col>
-                <Col size={screenWidth/2}>
-                 
-                    <TimePicker pickername="wakeup"/>
-                  
-                </Col>
-            </Row>
-
-            <Row style={styles.rowStyle}>
-                <Col size={screenWidth/2}>
-                  <Text style={styles.textStyle}>  Uyku Saati </Text>
-                </Col>
-                <Col size={screenWidth/2}>
-                  <TimePicker pickername="sleep"/>
-               
-                </Col>
-            </Row>
-           </Grid>
         </Content>
       </Container>
       
@@ -76,7 +63,8 @@ const styles=StyleSheet.create({
     backgroundColor: '#1976D2'
   },
   rowStyle:{
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent:'center'
   },
   input:{
     borderRadius: 10,

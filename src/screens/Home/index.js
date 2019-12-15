@@ -14,17 +14,13 @@ const windowSize = width - 64;
 const ActionButtons = ["50" , "100" , "200" , "300" , "400" , "500" , "600" , "700" , "800" , "900" , "1000" , "1100" , "1200" , "1300" , "1400" , "1500", "Cancel"];
 const cancelButtonIndex = ActionButtons.length - 1;
 
+
 @observer
 export default class Home extends Component {
- 
-
   constructor(props){
     super(props);
-    
      WaterStore._waterAmount(InformationStore.weight);
      WaterStore._percentage();
-    console.log(InformationStore.weight);
-    console.log(WaterStore.goalWater);
   }
   
   static navigationOptions= {

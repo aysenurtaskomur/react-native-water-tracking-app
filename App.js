@@ -7,6 +7,9 @@ import Router from './src/Router'
 import firebase from 'firebase'
 import PushNotification from 'react-native-push-notification';
 
+var today = new Date();
+var time = today.getHours() + ":" + today.getMinutes();
+
  export default class App extends Component {
    componentDidMount(){
     var firebaseConfig = {
@@ -20,7 +23,14 @@ import PushNotification from 'react-native-push-notification';
       measurementId: "G-0QQBW1MGWK"
     };
     // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+
+    // PushNotification.localNotificationSchedule({
+    //   message: "My Notification Message", // (required)
+    //   date: new Date(Date.now() + 60 * 1000)
+    //   });
    }
 
   render() {

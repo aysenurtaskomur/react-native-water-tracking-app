@@ -1,6 +1,8 @@
 import {observable,action,autorun,reaction} from 'mobx';
 import {Alert} from 'react-native'
 
+var today = new Date();
+var time = today.getHours() + ":" + today.getMinutes();
 
 class WaterStore{
     @observable goalWater= ''
@@ -12,10 +14,7 @@ class WaterStore{
          autorun(()=>{
            this.water;
            this._percentage();
-         //   PushNotification.localNotificationSchedule({
-         //       message: "My Notification Message", // (required)
-         //       date: new Date(Date.now() + 30 * 1000) // in 60 secs
-         //       });
+         
        })
         reaction(
                   ()=>this.percente,

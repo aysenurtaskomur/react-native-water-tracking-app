@@ -1,17 +1,18 @@
 import {observable,action,autorun} from 'mobx';
+var today = new Date();
+var time = today.getHours() + ":" + today.getMinutes();
+import firebase from 'firebase'
 
 class InformationStore{
   @observable weight = ''
   @observable username = ''
-  @observable wakeup = '00:00'
-  @observable sleep = '00:00'
+  @observable wakeup = '08:00'
+  @observable sleep = '23:00'
 
   // constructor(){
   //   autorun(()=>{
   //     this.weight;
-     
-
-  //      this.writeUserData(0,this.username,this.weight,this.wakeup,this.sleep);
+  //      this.writeUserData(this.username,this.weight,this.wakeup,this.sleep);
   //   })
   // }
 
@@ -25,19 +26,33 @@ class InformationStore{
 
   @action _setTime(timeName, newTime){
     if(timeName === "wakeup")
-      this.wakeup=newTime;
+      {this.wakeup=newTime;}
     else if ( timeName=== "sleep")
-      this.sleep=newTime;
+      {
+        this.sleep=newTime;
+       
+      }
   }
 
-  writeUserData(userId,username,weight,wakeup,sleep){
-    firebase.database().ref('users/' + userId).set({
-      username: username,
-      weight: weight,
-      wakeup: wakeup,
-      sleep: sleep
-    });
-  }
+  // writeUserData(username,weight,wakeup,sleep){
+  //   firebase.database().ref('users/' ).set({
+  //     username: username,
+  //     weight: weight,
+  //     wakeup: wakeup,
+  //     sleep: sleep
+  //   });
+  // }
+
+
+
+
+
+ //   if(time===this.sleep)
+    // { notification göndermeyi bırak}
+    //   else(time===this.wakeup)
+    //   {notification gondermeye basla}
+
+  
 }
 
 export default new InformationStore();
