@@ -34,8 +34,8 @@ class InformationStore{
       }
   }
 
-  // writeUserData(username,weight,wakeup,sleep){
-  //   firebase.database().ref('users/' ).set({
+  // writeUserData(userId,username,weight,wakeup,sleep){
+  //   firebase.database().ref('users/'+ userId ).set({
   //     username: username,
   //     weight: weight,
   //     wakeup: wakeup,

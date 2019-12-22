@@ -19,7 +19,7 @@ const AppStack = createStackNavigator({
     Amount:Amount,
     ChangeWeight:ChangeWeight
 },{
-  initialRouteName: 'FirstPage',
+  initialRouteName: 'SplashPage',
   headerLayoutPreset: 'center',
   defaultNavigationOptions:{
     title: 'Water Reminder',
