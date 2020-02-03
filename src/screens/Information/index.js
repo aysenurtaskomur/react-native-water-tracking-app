@@ -6,9 +6,12 @@ import TimePicker from '../../components/timePicker'
 import Weight from '../../components/weight';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import NavigationService from '../../NavigationService';
-import firebase from 'firebase'
+
+import InformationStore from '../../store/informationStore';
+import WaterStore from '../../store/waterStore';
 const screenWidth = Math.round(Dimensions.get('window').width);
 
+import * as firebase from 'firebase';
 export default class Information extends Component {
 
 
@@ -16,6 +19,29 @@ export default class Information extends Component {
     headerLeft: null
   }
 
+  signUp(){
+    firebase.auth().signInAnonymously().catch(function(error) {
+      var errorMessage = error.message;
+      console.log(errorMessage);
+    });
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        var userId = firebase.auth().currentUser.uid; 
+        firebase.database().ref('/informations/'+ userId)
+        .set({
+          weight: InformationStore.weight,
+          sleepTime: InformationStore.sleep,
+          wakeupTime: InformationStore.wakeup,
+          goalWater: WaterStore.goalWater,
+          water: WaterStore.water,
+          percente: WaterStore.percente
+        })
+        .then(user => NavigationService.navigate('Home'))
+      } 
+    });
+    
+   
+  }
   render() {
     return (
     <Container style={styles.container}>
@@ -45,7 +71,7 @@ export default class Information extends Component {
           containerStyle={{ }}
           style={{ backgroundColor: 'white' }}
           position="bottomRight"
-          onPress = {() =>{ NavigationService.navigate('Home')}}
+          onPress = {() =>{ this.signUp()}}
         >
           <Icon style={{color:'blue'}} name="chevron-right" />
         </Fab>

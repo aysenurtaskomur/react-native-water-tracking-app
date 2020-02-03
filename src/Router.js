@@ -7,17 +7,18 @@ import FirstPage from './screens/FirstPage'
 import Settings from './screens/Settings'
 import SplashPage from './screens/SplashPage'
 import ChangeWeight from './screens/ChangeWeight'
-import Amount from './screens/Amount'
+import ChangeAmount from './screens/ChangeAmount'
+import Calendar from './screens/Calendar'
 import 'react-native-gesture-handler'
- 
+
 const AppStack = createStackNavigator({
     FirstPage: FirstPage,
     Information: Information,
     Home: Home,
     Settings: Settings,
     SplashPage: SplashPage,
-    Amount:Amount,
-    ChangeWeight:ChangeWeight
+    ChangeAmount:ChangeAmount,
+    ChangeWeight:ChangeWeight,
 },{
   initialRouteName: 'SplashPage',
   headerLayoutPreset: 'center',
@@ -38,8 +39,9 @@ const AppStack = createStackNavigator({
 const SettingsModal= createStackNavigator({
     Main: AppStack,
     Settings : Settings,
-    Amount: Amount,
-    ChangeWeight: ChangeWeight
+    ChangeAmount: ChangeAmount,
+    ChangeWeight: ChangeWeight,
+    Calendar:Calendar
 },{
   mode: "modal",
   headerMode: "none"

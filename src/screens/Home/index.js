@@ -9,6 +9,8 @@ import NavigationService from '../../NavigationService';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+ import * as firebase from 'firebase';
+
 const {width} = Dimensions.get("window");
 const windowSize = width - 64;
 const ActionButtons = ["50" , "100" , "200" , "300" , "400" , "500" , "600" , "700" , "800" , "900" , "1000" , "1100" , "1200" , "1300" , "1400" , "1500", "Cancel"];
@@ -20,9 +22,33 @@ export default class Home extends Component {
   constructor(props){
     super(props);
      WaterStore._waterAmount(InformationStore.weight);
-     WaterStore._percentage();
+     WaterStore._percentage();   
   }
   
+  //gec geliyor hangi hooksa koycagını bul
+  componentDidMount(){
+    var userId = firebase.auth().currentUser.uid;
+    let check = firebase.database().ref('/informations/' + userId);
+    check.on('value', snapshot => {
+      var waterFirebase = snapshot.child('water').val();
+      var waterGoalFirebase = snapshot.child('goalWater').val();
+      var percenteFirebase = snapshot.child('percente').val();
+      WaterStore.goalWater=waterGoalFirebase;
+      WaterStore.water=waterFirebase;
+      WaterStore.percente=percenteFirebase;
+    });
+  }
+
+  writeUpdPercente(){
+    var userId = firebase.auth().currentUser.uid;
+    firebase.database().ref('/informations/'+ userId)
+    .update({
+      water: WaterStore.water,
+      percente: WaterStore.percente
+
+    })
+  }
+
   static navigationOptions= {
       headerLeft: null,
       headerRight: (
@@ -53,8 +79,9 @@ export default class Home extends Component {
             {
               (fill) => (
                 <Text style={{color:'white',fontSize: 60}}>
-                 
+                  
                    %{WaterStore.percente}
+
                 </Text>
               )
             }
@@ -79,7 +106,7 @@ export default class Home extends Component {
               buttonIndex => {
                 if(ActionButtons[buttonIndex] > 49){
                 WaterStore._addWater(parseInt(ActionButtons[buttonIndex]));
-                console.log(WaterStore.water);
+                this.writeUpdPercente();
                 }
                 }
               )

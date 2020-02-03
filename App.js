@@ -4,34 +4,36 @@ import {Provider} from 'mobx-react';
 import store from './src/store';
 import NavigationService from './src/NavigationService'
 import Router from './src/Router'
-import firebase from 'firebase'
+import * as firebase from 'firebase';
 import PushNotification from 'react-native-push-notification';
+import InformationStore from './src/store/informationStore';
+import WaterStore from './src/store/waterStore';
 
 var today = new Date();
 var time = today.getHours() + ":" + today.getMinutes();
 
  export default class App extends Component {
-   componentDidMount(){
-    var firebaseConfig = {
-      apiKey: "AIzaSyCLvfZmdzUztDv2C7T2lqHKxoa_9YEK9Wg",
-      authDomain: "water-reminder-c20fd.firebaseapp.com",
-      databaseURL: "https://water-reminder-c20fd.firebaseio.com",
-      projectId: "water-reminder-c20fd",
-      storageBucket: "water-reminder-c20fd.appspot.com",
-      messagingSenderId: "59279755629",
-      appId: "1:59279755629:web:7997af1ea81fe885203264",
-      measurementId: "G-0QQBW1MGWK"
-    };
-    // Initialize Firebase
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-    }
-
+   
+  
+ componentDidMount(){
+  const firebaseConfig = {
+    apiKey: "AIzaSyAAegA-TYm54UdNfSZaTsJpZjAIdziDEtY",
+    authDomain: "water-reminder-4d1d3.firebaseapp.com",
+    databaseURL: "https://water-reminder-4d1d3.firebaseio.com",
+    projectId: "water-reminder-4d1d3",
+    storageBucket: "water-reminder-4d1d3.appspot.com",
+    messagingSenderId: "1062930888597",
+    appId: "1:1062930888597:web:fb11a7dc9fd50bf5a1689c",
+    measurementId: "G-F5ZRQ3QBSD"
+  };
+  firebase.initializeApp(firebaseConfig);
+ }
+   
     // PushNotification.localNotificationSchedule({
     //   message: "My Notification Message", // (required)
     //   date: new Date(Date.now() + 60 * 1000)
     //   });
-   }
+   
 
   render() {
     return (

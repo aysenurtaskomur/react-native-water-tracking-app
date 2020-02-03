@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import {StyleSheet,Dimensions } from 'react-native'
-import InformationStore from '../../store/informationStore';
+import {StyleSheet,Dimensions,TextInput,View } from 'react-native'
 import {Container,Content,Text,Button,Item,Input} from 'native-base'
 import { Col, Grid } from 'react-native-easy-grid';
-import Weight from '../../components/weight';
 import NavigationService from '../../NavigationService';
 import WaterStore from '../../store/waterStore';
-
 const screenWidth = Math.round(Dimensions.get('window').width);
+
+import * as firebase from 'firebase';
 
 export default class changeAmount extends Component {
 
@@ -16,35 +15,47 @@ export default class changeAmount extends Component {
     headerBackTitle: 'Geri'
  }
 
+
+ writeUpdAmount(){
+   WaterStore._percentage();
+  var userId = firebase.auth().currentUser.uid;
+  firebase.database().ref('/informations/'+ userId)
+  .update({
+    goalWater: WaterStore.goalWater,
+    percente: WaterStore.percente 
+  })
+ }
   render() {
     return (
       <Container style={styles.container}>
-        <Content contentContainerStyle={{flex:1}}> 
+        <Content contentContainerStyle={{flex:1}}>
         <Grid>
           <Col style={{justifyContent:'center',alignItems:'center'}}>
               <Item style={{ width: screenWidth - 100}}>
-                <Input 
+
+                <Input
                 style={styles.input}
                 placeholder="Yeni Hedef"
                 keyboardType="numeric"
-                value={WaterStore.goalWater}
                 onChangeText={(value) =>WaterStore._setWaterAmount(value)}
-                />
+                /> 
+                
               </Item>
               <Button 
                 style={styles.buttonStyle}
-                onPress={()=> NavigationService.navigate('Home')}>
+                onPress={()=> { this.writeUpdAmount(); NavigationService.navigate('Home');}}>
                   <Text style={styles.textStyle}>KAYDET</Text> 
               </Button>
           </Col>   
-        </Grid>
-        </Content>
+        </Grid> 
+       </Content>
       </Container>
     )
   }
 }
 const styles=StyleSheet.create({
   container:{
+    flex:1,
     backgroundColor: '#1976D2'
   },
   input:{

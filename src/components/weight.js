@@ -1,22 +1,20 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
-import {Item,Input,Text} from "native-base";
+import { StyleSheet,Dimensions,TextInput } from 'react-native'
 import {observer} from 'mobx-react';
 import InformationStore from '../store/informationStore';
+const screenWidth = Math.round(Dimensions.get('window').width);
+const screenHeight = Math.round(Dimensions.get('window').height);
 
 //keyboarddan girince tek tek alıyor duzelt
 @observer
 export default class weight extends Component {
   
-  constructor(props){
-    super(props);
-  }
   render() {
     return (
   
-    <Input 
+    <TextInput 
       style={styles.input}
-      placeholder="Kilonuz"
+      placeholder="Kilo"
       keyboardType="numeric"
       value={InformationStore.weight}
       onChangeText={(value) =>InformationStore._setWeight(value)}
@@ -34,6 +32,8 @@ const styles=StyleSheet.create({
     textAlign:'center',
     backgroundColor:'white',
     alignSelf: 'center',
-    width:50
+    width: screenWidth-100,
+    height:50
+
   }
 })

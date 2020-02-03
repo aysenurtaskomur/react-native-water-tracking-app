@@ -1,11 +1,13 @@
 import {observable,action,autorun,reaction} from 'mobx';
-import {Alert} from 'react-native'
+import {Alert} from 'react-native';
+import * as firebase from 'firebase';
+
 
 var today = new Date();
 var time = today.getHours() + ":" + today.getMinutes();
 
 class WaterStore{
-    @observable goalWater= ''
+    @observable goalWater= 0
     @observable water= 0
     @observable percente= 1
 
@@ -30,7 +32,7 @@ class WaterStore{
    
    @action _setWaterAmount(newWater)
    {
-      this.goalWater=newWater;
+     this.goalWater=newWater;
    }
 
    @action _addWater(addwater){
@@ -43,8 +45,6 @@ class WaterStore{
          this.percente=100;
       }
    }
-
-  
 }
 
 

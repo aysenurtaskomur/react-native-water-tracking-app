@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import {StyleSheet } from 'react-native'
+import {StyleSheet,View } from 'react-native'
 import { Container, Content,List, ListItem, Text,Right,Icon,Left,Button} from 'native-base'
 import NavigationService from '../../NavigationService';
-
+import WaterStore from '../../store/waterStore';
+import * as firebase from 'firebase';
 export default class Settings extends Component {
  
+
   render() {
     return (
-      <Container style={styles.container}>
-        <Content>
+      <View style={styles.container}>
         <List>
             <ListItem selected>
               <Left>
@@ -16,7 +17,7 @@ export default class Settings extends Component {
               </Left>
               <Right>
                 <Button transparent
-                onPress={()=>NavigationService.navigate('Amount')}
+                onPress={()=>NavigationService.navigate('ChangeAmount')}
                 >
                   <Icon name="arrow-forward" style={styles.icon}/>
                 </Button>
@@ -35,10 +36,22 @@ export default class Settings extends Component {
                 </Button>
               </Right>
             </ListItem>
+
+            <ListItem selected>
+              <Left>
+                <Text style={styles.textStyle}>Su Takvimi</Text>
+              </Left>
+              <Right>
+                <Button transparent
+                onPress={()=>NavigationService.navigate('Calendar')}
+                >
+                <Icon name="arrow-forward" style={styles.icon}/> 
+                </Button>
+              </Right>
+            </ListItem>
           </List>
          
-        </Content>
-      </Container>
+      </View>
     )
   }
 }
