@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { StyleSheet,Image,ActivityIndicator,View,Text } from 'react-native'
-import {Container,Content } from 'native-base';
+import { StyleSheet, Image, ActivityIndicator, View, Text } from 'react-native'
+import { Container, Content } from 'native-base';
 import NavigationService from '../../NavigationService';
 import * as firebase from 'firebase';
 import { YellowBox } from 'react-native';
@@ -13,41 +13,44 @@ console.warn = message => {
     _console.warn(message);
   }
 };
+
 export default class SplashPage extends Component {
 
-  componentDidMount(){
-   setTimeout(()=>{
-    //  NavigationService.navigate('FirstPage')
-      firebase.auth().onAuthStateChanged(user=>{
-          if (user) {
-             NavigationService.navigate('Home') 
-          } 
-         else { 
+  
+  componentDidMount() {
+    setTimeout(() => {
+      console.log("sdfds");
+      firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          console.log("aa");
+          NavigationService.navigate('Home')
+        }
+        else {
           NavigationService.navigate('FirstPage')
-         }
-      
-        })
-   },1000);
+        }
+
+      })
+    }, 3000);
   }
 
-    // firebase.auth().onAuthStateChanged(user => {
-    //  NavigationService.navigate(user ? 'Main' : 'SignUp')
-    // })
+  // firebase.auth().onAuthStateChanged(user => {
+  //  NavigationService.navigate(user ? 'Main' : 'SignUp')
+  // })
 
   render() {
     return (
-     <Container style={styles.container} >
-       <Content contentContainerStyle={{flex:1, justifyContent:'center',alignItems: 'center'}} >
-         <Image
-         source={require('./s.jpg')}/> 
-       </Content>
-     </Container>
+      <Container style={styles.container} >
+        <Content contentContainerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
+          <Image
+            source={require('./s.jpg')} />
+        </Content>
+      </Container>
     );
   }
 }
 
-const styles=StyleSheet.create({
-  container:{
+const styles = StyleSheet.create({
+  container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

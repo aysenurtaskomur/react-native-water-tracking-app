@@ -56,7 +56,7 @@ const styles=StyleSheet.create({
   textStyle:{
     color:'#1976D2',
     fontWeight:'600',
-    fontSize:20
+    fontSize:18
   },
   buttonStyle:{
     backgroundColor:'white',marginTop:30,

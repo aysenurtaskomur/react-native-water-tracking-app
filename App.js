@@ -9,8 +9,7 @@ import PushNotification from 'react-native-push-notification';
 import InformationStore from './src/store/informationStore';
 import WaterStore from './src/store/waterStore';
 
-var today = new Date();
-var time = today.getHours() + ":" + today.getMinutes();
+
 
  export default class App extends Component {
    

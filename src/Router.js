@@ -19,6 +19,7 @@ const AppStack = createStackNavigator({
     SplashPage: SplashPage,
     ChangeAmount:ChangeAmount,
     ChangeWeight:ChangeWeight,
+    Calendar:Calendar
 },{
   initialRouteName: 'SplashPage',
   headerLayoutPreset: 'center',
