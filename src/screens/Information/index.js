@@ -12,6 +12,9 @@ import WaterStore from '../../store/waterStore';
 const screenWidth = Math.round(Dimensions.get('window').width);
 
 import * as firebase from 'firebase';
+
+
+
 export default class Information extends Component {
 
 constructor(props) {
@@ -37,7 +40,15 @@ constructor(props) {
           wakeupTime: InformationStore.wakeup,
           goalWater: WaterStore.goalWater,
           water: WaterStore.water,
-          percente: WaterStore.percente
+          percente: WaterStore.percente,
+          date: new Date().toLocaleDateString(),
+          Mon: 0,
+          Tue: 0,
+          Wed:0,
+          Thu:0,
+          Fri:0,
+          Sat:0,
+          Sun:0
         })
         .then(user => NavigationService.navigate('Home'))
       } 

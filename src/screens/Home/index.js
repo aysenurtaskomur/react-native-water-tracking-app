@@ -5,6 +5,7 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import { observer } from 'mobx-react';
 import InformationStore from '../../store/informationStore';
 import WaterStore from '../../store/waterStore';
+import TimeStore from '../../store/timeStore';
 import NavigationService from '../../NavigationService';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -15,15 +16,15 @@ const windowSize = width - 64;
 const ActionButtons = ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900", "1000", "1100", "1200", "1300", "1400", "1500", "Cancel"];
 const cancelButtonIndex = ActionButtons.length - 1;
 
-// var today = new Date();
-// var times = today.getHours() + ":" + today.getMinutes();
+
+ var weekday = ['Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][new Date().getDay()];
 
 @observer
 export default class Home extends Component {
 
   componentDidMount() {
     WaterStore._waterAmount(InformationStore.weight);
-    // WaterStore._percentage();
+   
     var userId = firebase.auth().currentUser.uid;
     let check = firebase.database().ref('/informations/' + userId);
     check.on('value', snapshot => {
@@ -33,37 +34,36 @@ export default class Home extends Component {
       WaterStore.goalWater = waterGoalFirebase;
       WaterStore.water = waterFirebase;
       WaterStore.percente = percenteFirebase;
-      this.setState({
-        refreshing: false
-      });
     });
-
-    // check = setTimeout(() => {
-    //   if (times == "2:43") {
-    //     var userId = firebase.auth().currentUser.uid;
-    //     firebase.database().ref('/informations/' + userId)
-    //       .update({
-    //         water: 0
-    //       })
-    //       .then(()=>{
-    //         WaterStore._percentage();
-    //       })
-    //   }
-    // }, 50000);
 
   }
 
-// componentWillUnmount() {
-//   clearTimeout(this.check);
-// }
 
   writeUpdPercente() {
     var userId = firebase.auth().currentUser.uid;
     firebase.database().ref('/informations/' + userId)
       .update({
         water: WaterStore.water,
-        percente: WaterStore.percente
+        percente: WaterStore.percente,
+      }) 
+  }
 
+  writeDayAmount() {
+    var userId = firebase.auth().currentUser.uid;
+      var query = firebase.database().ref('informations/'+ userId).orderByValue();
+      query.on('value',snapshot=>{
+        snapshot.forEach(childSnapshot=>{
+           WaterStore.childKey = childSnapshot.key;
+          
+           if(WaterStore.childKey == weekday)
+            {
+              console.warn("eslesme");
+               var up = {};
+               up[WaterStore.childKey] = WaterStore.water;
+               firebase.database().ref('/informations/' + userId).update(up);
+              
+            }
+         })
       })
   }
 
@@ -95,18 +95,7 @@ export default class Home extends Component {
                   {
                     (fill) => (
                       <Text style={{ color: 'white', fontSize: 60 }}>
-
                         %{WaterStore.percente}
-
-                        {/*   if(this.state.refreshing)
-                           <View>
-                           <ActivityIndicator size="small" color="#0000ff" />
-                           </View>
-                         }
-                         else{
-                           %{WaterStore.percente}
-                         }
-                         } */}
                       </Text>
                     )
                   }
@@ -131,6 +120,7 @@ export default class Home extends Component {
                         if (ActionButtons[buttonIndex] > 49) {
                           WaterStore._addWater(parseInt(ActionButtons[buttonIndex]));
                           this.writeUpdPercente();
+                          this.writeDayAmount();
                         }
                       }
                     )

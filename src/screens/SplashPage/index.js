@@ -19,10 +19,8 @@ export default class SplashPage extends Component {
   
   componentDidMount() {
     setTimeout(() => {
-      console.log("sdfds");
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
-          console.log("aa");
           NavigationService.navigate('Home')
         }
         else {
@@ -30,7 +28,7 @@ export default class SplashPage extends Component {
         }
 
       })
-    }, 3000);
+    }, 1000);
   }
 
   // firebase.auth().onAuthStateChanged(user => {
