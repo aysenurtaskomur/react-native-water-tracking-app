@@ -14,7 +14,7 @@ export default class weight extends Component {
   
     <TextInput 
       style={styles.input}
-      placeholder="Kilo"
+      placeholder="Güncel Kilo"
       keyboardType="numeric"
       value={InformationStore.weight}
       onChangeText={(value) =>InformationStore._setWeight(value)}

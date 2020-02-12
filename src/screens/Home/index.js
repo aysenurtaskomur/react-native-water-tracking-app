@@ -5,7 +5,6 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import { observer } from 'mobx-react';
 import InformationStore from '../../store/informationStore';
 import WaterStore from '../../store/waterStore';
-import TimeStore from '../../store/timeStore';
 import NavigationService from '../../NavigationService';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -35,7 +34,6 @@ export default class Home extends Component {
       WaterStore.water = waterFirebase;
       WaterStore.percente = percenteFirebase;
     });
-
   }
 
 
@@ -57,7 +55,6 @@ export default class Home extends Component {
           
            if(WaterStore.childKey == weekday)
             {
-              console.warn("eslesme");
                var up = {};
                up[WaterStore.childKey] = WaterStore.water;
                firebase.database().ref('/informations/' + userId).update(up);
@@ -93,10 +90,12 @@ export default class Home extends Component {
                   tintColor="#00e0ff"
                   backgroundColor="#3d5875">
                   {
-                    (fill) => (
+                    
+                      (fill) => (
                       <Text style={{ color: 'white', fontSize: 60 }}>
                         %{WaterStore.percente}
                       </Text>
+                      
                     )
                   }
                 </AnimatedCircularProgress>

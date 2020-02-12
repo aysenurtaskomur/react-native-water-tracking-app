@@ -69,8 +69,6 @@ export default class Calendar extends Component {
           }}
           showBarTops={false}
           fromZero={true}
-          yAxisSuffix= ""
-          
         />
       </View>
     )

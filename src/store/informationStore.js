@@ -1,7 +1,4 @@
 import {observable,action,autorun} from 'mobx';
-var today = new Date();
-var time = today.getHours() + ":" + today.getMinutes();
-import * as firebase from 'firebase';
 
 class InformationStore{
   @observable weight = ''
@@ -15,11 +12,8 @@ class InformationStore{
   @action _setTime(timeName, newTime){
     if(timeName === "wakeup")
       {this.wakeup=newTime;}
-    else if ( timeName=== "sleep")
-      {
-        this.sleep=newTime;
-       
-      }
+    else if ( timeName === "sleep")
+      {this.sleep=newTime;}
   }
   
 }

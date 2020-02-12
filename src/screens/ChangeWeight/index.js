@@ -35,7 +35,7 @@ export default class changeWeight extends Component {
         <Grid>
           <Col style={{justifyContent:'center',alignItems:'center'}}>
                 <Item style={{ width: screenWidth - 100}}>
-                  <Weight placeholder={InformationStore.weight}/>
+                  <Weight/>
                 </Item>
                 <Button 
                 style={styles.buttonStyle}

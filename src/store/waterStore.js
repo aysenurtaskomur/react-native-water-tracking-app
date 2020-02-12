@@ -2,7 +2,6 @@ import { observable, action, autorun, reaction,when } from 'mobx';
 import { Alert } from 'react-native';
 import * as firebase from 'firebase';
 
-//  var weekday = ['Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][new Date().getDay()];
 
 class WaterStore {
    @observable goalWater = 1
@@ -37,21 +36,6 @@ class WaterStore {
 
    @action _addWater(addwater) {
       this.water = this.water + addwater;
-     
-      // var userId = firebase.auth().currentUser.uid;
-      // var query = firebase.database().ref('informations/'+ userId).orderByValue();
-      // query.on('value',snapshot=>{
-      //   snapshot.forEach(childSnapshot=>{
-      //      this.childKey = childSnapshot.key;
-      //      if(this.childKey == weekday)
-      //       {
-      //          var up = {};
-      //          up[this.childKey] = this.water;
-      //          firebase.database().ref('/informations/' + userId).update(up);
-              
-      //       }
-      //    })
-      // })
    }
       
 
