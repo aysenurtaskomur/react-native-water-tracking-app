@@ -5,7 +5,6 @@ import InformationStore from '../store/informationStore';
 const screenWidth = Math.round(Dimensions.get('window').width);
 const screenHeight = Math.round(Dimensions.get('window').height);
 
-//keyboarddan girince tek tek alıyor duzelt
 @observer
 export default class weight extends Component {
   

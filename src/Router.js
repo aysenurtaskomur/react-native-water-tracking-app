@@ -13,7 +13,6 @@ import 'react-native-gesture-handler'
 
 const AppStack = createStackNavigator({
     FirstPage: FirstPage,
-    Information: Information,
     Home: Home,
     Settings: Settings,
     SplashPage: SplashPage,
@@ -24,11 +23,9 @@ const AppStack = createStackNavigator({
   initialRouteName: 'SplashPage',
   headerLayoutPreset: 'center',
   defaultNavigationOptions:{
-    title: 'Water Reminder',
     headerBackTitle: null,
-    //backgroundcolor
     headerStyle:{
-      backgroundColor: '#3F51B5'
+      backgroundColor: '#283593'
     },
     headerTintColor: 'white',
     headerTitleStyle:{

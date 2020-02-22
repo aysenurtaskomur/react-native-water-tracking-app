@@ -1,6 +1,5 @@
 import { observable, action, autorun, reaction,when } from 'mobx';
 import { Alert } from 'react-native';
-import * as firebase from 'firebase';
 
 
 class WaterStore {

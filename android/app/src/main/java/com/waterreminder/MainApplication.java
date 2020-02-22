@@ -3,7 +3,6 @@ package com.waterreminder;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.horcrux.svg.SvgPackage;
 import com.swmansion.rnscreens.RNScreensPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
@@ -18,6 +17,8 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
+
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
@@ -30,13 +31,12 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new ReactNativePushNotificationPackage(),
             new SvgPackage(),
             new RNScreensPackage(),
             new RNGestureHandlerPackage(),
             new ReanimatedPackage(),
             new VectorIconsPackage()
-           
+          
       );
     }
 
@@ -55,5 +55,6 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+    
   }
 }

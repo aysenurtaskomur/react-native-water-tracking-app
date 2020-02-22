@@ -17,10 +17,7 @@ import * as firebase from 'firebase';
 
 export default class Information extends Component {
 
-constructor(props) {
-  super(props);
-  console.log("sdfsdf");
-}
+
   static navigationOptions={
     headerLeft: null
   }

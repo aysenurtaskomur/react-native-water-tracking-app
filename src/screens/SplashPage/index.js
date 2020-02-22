@@ -6,17 +6,21 @@ import * as firebase from 'firebase';
 import { YellowBox } from 'react-native';
 import _ from 'lodash';
 
-YellowBox.ignoreWarnings(['Setting a timer']);
-const _console = _.clone(console);
-console.warn = message => {
-  if (message.indexOf('Setting a timer') <= -1) {
-    _console.warn(message);
-  }
-};
+// YellowBox.ignoreWarnings(['Setting a timer']);
+// const _console = _.clone(console);
+// console.warn = message => {
+//   if (message.indexOf('Setting a timer') <= -1) {
+//     _console.warn(message);
+//   }
+// };
+
 
 export default class SplashPage extends Component {
-
   
+  static navigationOptions = {
+    headerShown: false
+  };
+
   componentDidMount() {
     setTimeout(() => {
       firebase.auth().onAuthStateChanged(user => {
@@ -28,19 +32,16 @@ export default class SplashPage extends Component {
         }
 
       })
-    }, 1000);
+    }, 4000);
   }
-
-  // firebase.auth().onAuthStateChanged(user => {
-  //  NavigationService.navigate(user ? 'Main' : 'SignUp')
-  // })
 
   render() {
     return (
       <Container style={styles.container} >
         <Content contentContainerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
           <Image
-            source={require('./s.jpg')} />
+            source={require('./icon.jpg')} />
+            
         </Content>
       </Container>
     );
@@ -52,6 +53,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#BBDEFB',
+    backgroundColor: 'white',
   }
 });

@@ -2,11 +2,8 @@ import React, { Component } from 'react'
 import { View, StyleSheet, Dimensions } from 'react-native'
 import * as Progress from 'react-native-progress';
 import { BarChart, LineChart } from "react-native-chart-kit";
-const screenWidth = Math.round(Dimensions.get('window').width);
 const screenHeight = Math.round(Dimensions.get('window').height);
 import TimeStore from '../../store/timeStore';
-import NavigationService from '../../NavigationService';
-import waterStore from '../../store/waterStore';
 import * as firebase from 'firebase';
 
 

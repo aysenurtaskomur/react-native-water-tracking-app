@@ -52,7 +52,7 @@ export default class Home extends Component {
       query.on('value',snapshot=>{
         snapshot.forEach(childSnapshot=>{
            WaterStore.childKey = childSnapshot.key;
-          
+         
            if(WaterStore.childKey == weekday)
             {
                var up = {};
@@ -87,8 +87,8 @@ export default class Home extends Component {
                   size={windowSize}
                   width={8}
                   fill={WaterStore.percente}
-                  tintColor="#00e0ff"
-                  backgroundColor="#3d5875">
+                  tintColor="#01579B"
+                  backgroundColor="#42A5F5">
                   {
                     
                       (fill) => (

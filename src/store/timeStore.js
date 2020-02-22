@@ -5,7 +5,7 @@ import WaterStore from './waterStore';
 
 class timeStore{
    @observable currentDay=0;
-   @observable firebaseDay;
+   @observable firebaseDay = new Date().toLocaleDateString();
    @observable Monday = 0;
    @observable Tuesday = 0;
    @observable Wednesday = 0;
@@ -25,9 +25,7 @@ class timeStore{
         var dayFirebase = snapshot.child('date').val();
         this.firebaseDay = dayFirebase;
       })
-
-        if(this.currentDay != this.firebaseDay) {
-         
+        if(this.currentDay !== this.firebaseDay) {
           firebase.database().ref('/informations/' + userId)
             .update({
               water: 0,
@@ -35,6 +33,7 @@ class timeStore{
             })
             .then(()=>{
               WaterStore._percentage();
+             
             })
         }
     }
